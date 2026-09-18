@@ -1,1 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>JANAKINATH MEDICAL</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#f4f7fb;
+  color:#172033;
+}
+
+/* HEADER */
+
+header{
+  background:linear-gradient(135deg,#075e54,#128c7e);
+  color:white;
+  padding:22px 15px;
+  text-align:center;
+}
+
+header h1{
+  font-size:26px;
+  font-weight:800;
+}
+
+header p{
+  margin-top:6px;
+  font-size:14px;
+  opacity:.9;
+}
+
+/* MAIN */
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:18px;
+}
+
+/* SEARCH */
+
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.search{
+  flex:2;
+  min-width:200px;
+}
+
+.category{
+  flex:1;
+  min-width:150px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #d5dce5;
+  border-radius:10px;
+  background:white;
+  font-size:15px;
+  outline:none;
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px 16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.adminButton{
+  background:#172033;
+  color:white;
+}
+
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:16px;
+}
+
+.card{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card-image{
+  width:100%;
+  height:190px;
+  object-fit:contain;
+  background:#eef3f7;
+}
+
+.no-image{
+  height:190px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#eef3f7;
+  font-size:55px;
+}
+
+.card-body{
+  padding:15px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#e5f7f3;
+  color:#087c6e;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.card h3{
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.company{
+  color:#667085;
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.price{
+  color:#087c6e;
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.viewButton{
+  width:100%;
+  background:#087c6e;
+  color:white;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:100;
+  overflow:auto;
+  padding:20px;
+}
+
+.modalBox{
+  background:white;
+  max-width:620px;
+  margin:20px auto;
+  border-radius:18px;
+  padding:20px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:12px;
+  top:12px;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#ef4444;
+  color:white;
+  font-size:20px;
+  padding:0;
+}
+
+.detailImage{
+  width:100%;
+  height:280px;
+  object-fit:contain;
+  background:#f1f5f9;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+.detailTitle{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.specs{
+  margin-top:15px;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.spec{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:12px;
+  border-bottom:1px solid #eee;
+}
+
+.spec:last-child{
+  border-bottom:0;
+}
+
+.spec strong{
+  color:#344054;
+}
+
+.description{
+  margin-top:15px;
+  line-height:1.6;
+  color:#475467;
+}
+
+.whatsapp{
+  display:block;
+  text-align:center;
+  margin-top:18px;
+  padding:14px;
+  border-radius:10px;
+  background:#25d366;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* ADMIN */
+
+.adminBox h2{
+  margin-bottom:18px;
+}
+
+.formGroup{
+  margin-bottom:14px;
+}
+
+.formGroup label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.saveButton{
+  width:100%;
+  background:#087c6e;
+  color:white;
+  margin-top:5px;
+}
+
+.clearButton{
+  width:100%;
+  background:#667085;
+  color:white;
+  margin-top:8px;
+}
+
+.adminProducts{
+  margin-top:25px;
+}
+
+.adminItem{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+.adminActions{
+  display:flex;
+  gap:6px;
+}
+
+.edit{
+  background:#f59e0b;
+  color:white;
+}
+
+.delete{
+  background:#ef4444;
+  color:white;
+}
+
+/* EMPTY */
+
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:50px 10px;
+  color:#667085;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:30px 15px;
+  color:#667085;
+  font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .card-image,
+  .no-image{
+    height:145px;
+  }
+
+  .card-body{
+    padding:10px;
+  }
+
+  .card h3{
+    font-size:15px;
+  }
+
+  .price{
+    font-size:17px;
+  }
+
+  .viewButton{
+    font-size:12px;
+    padding:10px;
+  }
+
+  .adminItem{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .detailImage{
+    height:230px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <h1>💊 JANAKINATH MEDICAL</h1>
+  <p>Medicine & Healthcare Product Catalog</p>
+</header>
+
+
+<div class="container">
+
+  <!-- SEARCH -->
+
+  <div class="controls">
+
+    <input
+      class="search"
+      id="search"
+      type="text"
+      placeholder="🔍 Search medicine/product..."
+      oninput="showProducts()"
+    >
+
+    <select
+      class="category"
+      id="category"
+      onchange="showProducts()"
+    >
+      <option value="all">All Products</option>
+      <option value="Medicine">Medicine</option>
+      <option value="Syrup">Syrup</option>
+      <option value="Tablet">Tablet</option>
+      <option value="Capsule">Capsule</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <button
+      class="adminButton"
+      onclick="openAdmin()"
+    >
+      ⚙️ Admin
+    </button>
+
+  </div>
+
+
+  <!-- PRODUCTS -->
+
+  <div
+    class="products"
+    id="products"
+  ></div>
+
+</div>
+
+
+<footer>
+  © 2026 JANAKINATH MEDICAL
+</footer>
+
+
+<!-- PRODUCT DETAILS -->
+
+<div
+  class="modal"
+  id="detailsModal"
+>
+
+  <div class="modalBox">
+
+    <button
+      class="close"
+      onclick="closeDetails()"
+    >
+      ×
+    </button>
+
+    <img
+      id="detailImage"
+      class="detailImage"
+      src=""
+      alt="Product"
+    >
+
+    <h2
+      id="detailName"
+      class="detailTitle"
+    ></h2>
+
+    <div
+      id="detailPrice"
+      class="price"
+    ></div>
+
+    <span
+      id="detailType"
+      class="badge"
+    ></span>
+
+
+    <div class="specs">
+
+      <div class="spec">
+        <strong>Company</strong>
+        <span id="detailCompany"></span>
+      </div>
+
+      <div class="spec">
+        <strong>Pack Size</strong>
+        <span id="detailPack"></span>
+      </div>
+
+      <div class="spec">
+        <strong>Stock</strong>
+        <span id="detailStock"></span>
+      </div>
+
+      <div class="spec">
+        <strong>Product Code</strong>
+        <span id="detailCode"></span>
+      </div>
+
+    </div>
+
+
+    <p
+      id="detailDescription"
+      class="description"
+    ></p>
+
+
+    <a
+      id="whatsappButton"
+      class="whatsapp"
+      target="_blank"
+      href="#"
+    >
+      💬 WhatsApp Enquiry
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div
+  class="modal"
+  id="adminModal"
+>
+
+  <div class="modalBox adminBox">
+
+    <button
+      class="close"
+      onclick="closeAdmin()"
+    >
+      ×
+    </button>
+
+    <h2>⚙️ Product Admin Panel</h2>
+
+
+    <div class="formGroup">
+
+      <label>Product Name *</label>
+
+      <input
+        id="pName"
+        placeholder="যেমন: Paracetamol 500mg"
+      >
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Product Photo</label>
+
+      <input
+        id="pImage"
+        type="file"
+        accept="image/*"
+      >
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Price / Rate *</label>
+
+      <input
+        id="pPrice"
+        placeholder="যেমন: ₹50"
+      >
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Product Type</label>
+
+      <select id="pType">
+
+        <option value="Medicine">
+          Medicine
+        </option>
+
+        <option value="Tablet">
+          Tablet
+        </option>
+
+        <option value="Capsule">
+          Capsule
+        </option>
+
+        <option value="Syrup">
+          Syrup
+        </option>
+
+        <option value="Other">
+          Other
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Company</label>
+
+      <input
+        id="pCompany"
+        placeholder="যেমন: ABC Pharma"
+      >
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Pack Size</label>
+
+      <input
+        id="pPack"
+        placeholder="যেমন: 10 Tablets"
+      >
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Stock</label>
+
+      <input
+        id="pStock"
+        placeholder="যেমন: Available"
+      >
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Product Code</label>
+
+      <input
+        id="pCode"
+        placeholder="যেমন: MED001"
+      >
+
+    </div>
+
+
+    <div class="formGroup">
+
+      <label>Description</label>
+
+      <textarea
+        id="pDescription"
+        rows="4"
+        placeholder="Product সম্পর্কে বিস্তারিত..."
+      ></textarea>
+
+    </div>
+
+
+    <button
+      class="saveButton"
+      onclick="saveProduct()"
+    >
+      💾 Save Product
+    </button>
+
+
+    <button
+      class="clearButton"
+      onclick="clearForm()"
+    >
+      Clear Form
+    </button>
+
+
+    <!-- ADMIN PRODUCT LIST -->
+
+    <div class="adminProducts">
+
+      <h3 style="margin-bottom:12px;">
+        Added Products
+      </h3>
+
+      <div id="adminList"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   PRODUCT DATA
+========================= */
+
+let products =
+  JSON.parse(
+    localStorage.getItem("janakinathProducts")
+  ) || [];
+
+let editingId = null;
+
+
+/* =========================
+   SAMPLE PRODUCTS
+========================= */
+
+if(products.length === 0){
+
+  products = [
+
+    {
+      id:Date.now(),
+      name:"Sample Medicine",
+      image:"",
+      price:"₹50",
+      type:"Medicine",
+      company:"Sample Pharma",
+      pack:"10 Tablets",
+      stock:"Available",
+      code:"MED001",
+      description:
+        "এটি একটি sample product। Admin panel থেকে নিজের product যোগ করুন।"
+    }
+
+  ];
+
+  saveData();
+
+}
+
+
+/* =========================
+   SAVE DATA
+========================= */
+
+function saveData(){
+
+  localStorage.setItem(
+    "janakinathProducts",
+    JSON.stringify(products)
+  );
+
+}
+
+
+/* =========================
+   SHOW PRODUCTS
+========================= */
+
+function showProducts(){
+
+  const container =
+    document.getElementById("products");
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
+
+  const category =
+    document.getElementById("category").value;
+
+
+  const filtered =
+    products.filter(product => {
+
+      const searchMatch =
+        product.name
+          .toLowerCase()
+          .includes(search);
+
+
+      const categoryMatch =
+        category === "all" ||
+        product.type === category;
+
+
+      return searchMatch && categoryMatch;
+
+    });
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML = `
+      <div class="empty">
+        <h3>😔 Product পাওয়া যায়নি</h3>
+        <p>অন্য নাম দিয়ে Search করুন।</p>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered.map(product => `
+
+      <div class="card">
+
+        ${
+          product.image
+
+          ?
+
+          `<img
+            class="card-image"
+            src="${product.image}"
+            alt="${product.name}"
+          >`
+
+          :
+
+          `<div class="no-image">
+            💊
+          </div>`
+        }
+
+
+        <div class="card-body">
+
+          <span class="badge">
+            ${product.type}
+          </span>
+
+
+          <h3>
+            ${product.name}
+          </h3>
+
+
+          <div class="company">
+            ${product.company || "Company not added"}
+          </div>
+
+
+          <div class="price">
+            ${product.price}
+          </div>
+
+
+          <button
+            class="viewButton"
+            onclick="showDetails(${product.id})"
+          >
+            👁️ View Details
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   PRODUCT DETAILS
+========================= */
+
+function showDetails(id){
+
+  const product =
+    products.find(
+      p => p.id === id
+    );
+
+  if(!product) return;
+
+
+  const image =
+    document.getElementById("detailImage");
+
+
+  if(product.image){
+
+    image.src = product.image;
+
+    image.style.display = "block";
+
+  }else{
+
+    image.style.display = "none";
+
+  }
+
+
+  document.getElementById("detailName")
+    .innerText =
+    product.name;
+
+
+  document.getElementById("detailPrice")
+    .innerText =
+    product.price;
+
+
+  document.getElementById("detailType")
+    .innerText =
+    product.type;
+
+
+  document.getElementById("detailCompany")
+    .innerText =
+    product.company || "-";
+
+
+  document.getElementById("detailPack")
+    .innerText =
+    product.pack || "-";
+
+
+  document.getElementById("detailStock")
+    .innerText =
+    product.stock || "-";
+
+
+  document.getElementById("detailCode")
+    .innerText =
+    product.code || "-";
+
+
+  document.getElementById("detailDescription")
+    .innerText =
+    product.description || "";
+
+
+  const message =
+    `Hello, I want to know about ${product.name}. Price: ${product.price}`;
+
+
+  document.getElementById("whatsappButton")
+    .href =
+    "https://wa.me/?text=" +
+    encodeURIComponent(message);
+
+
+  document.getElementById("detailsModal")
+    .style.display =
+    "block";
+
+}
+
+
+function closeDetails(){
+
+  document.getElementById("detailsModal")
+    .style.display =
+    "none";
+
+}
+
+
+/* =========================
+   ADMIN
+========================= */
+
+function openAdmin(){
+
+  document.getElementById("adminModal")
+    .style.display =
+    "block";
+
+  renderAdmin();
+
+}
+
+
+function closeAdmin(){
+
+  document.getElementById("adminModal")
+    .style.display =
+    "none";
+
+}
+
+
+/* =========================
+   ADMIN LIST
+========================= */
+
+function renderAdmin(){
+
+  const list =
+    document.getElementById("adminList");
+
+
+  if(products.length === 0){
+
+    list.innerHTML =
+      "<p>No products added.</p>";
+
+    return;
+
+  }
+
+
+  list.innerHTML =
+    products.map(product => `
+
+      <div class="adminItem">
+
+        <div>
+
+          <strong>
+            ${product.name}
+          </strong>
+
+          <br>
+
+          <small>
+            ${product.price}
+            •
+            ${product.type}
+          </small>
+
+        </div>
+
+
+        <div class="adminActions">
+
+          <button
+            class="edit"
+            onclick="editProduct(${product.id})"
+          >
+            Edit
+          </button>
+
+
+          <button
+            class="delete"
+            onclick="deleteProduct(${product.id})"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+========================= */
+
+function saveProduct(){
+
+  const name =
+    document
+      .getElementById("pName")
+      .value
+      .trim();
+
+  const price =
+    document
+      .getElementById("pPrice")
+      .value
+      .trim();
+
+
+  if(!name || !price){
+
+    alert(
+      "Product Name এবং Price দিতে হবে!"
+    );
+
+    return;
+
+  }
+
+
+  const file =
+    document
+      .getElementById("pImage")
+      .files[0];
+
+
+  function finishSave(image){
+
+    const product = {
+
+      id:
+        editingId ||
+        Date.now(),
+
+      name:name,
+
+      image:
+        image !== undefined
+        ?
+        image
+        :
+        editingId
+        ?
+        (
+          products.find(
+            p => p.id === editingId
+          )?.image || ""
+        )
+        :
+        "",
+
+      price:price,
+
+      type:
+        document.getElementById("pType").value,
+
+      company:
+        document.getElementById("pCompany").value,
+
+      pack:
+        document.getElementById("pPack").value,
+
+      stock:
+        document.getElementById("pStock").value,
+
+      code:
+        document.getElementById("pCode").value,
+
+      description:
+        document.getElementById("pDescription").value
+
+    };
+
+
+    if(editingId){
+
+      const index =
+        products.findIndex(
+          p => p.id === editingId
+        );
+
+      products[index] =
+        product;
+
+      editingId = null;
+
+    }else{
+
+      products.push(product);
+
+    }
+
+
+    saveData();
+
+    clearForm();
+
+    showProducts();
+
+    renderAdmin();
+
+    alert(
+      "✅ Product successfully saved!"
+    );
+
+  }
+
+
+  if(file){
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      function(event){
+
+        finishSave(
+          event.target.result
+        );
+
+      };
+
+
+    reader.readAsDataURL(file);
+
+  }else{
+
+    finishSave();
+
+  }
+
+}
+
+
+/* =========================
+   EDIT PRODUCT
+========================= */
+
+function editProduct(id){
+
+  const product =
+    products.find(
+      p => p.id === id
+    );
+
+  if(!product) return;
+
+
+  editingId = id;
+
+
+  document.getElementById("pName")
+    .value =
+    product.name;
+
+
+  document.getElementById("pPrice")
+    .value =
+    product.price;
+
+
+  document.getElementById("pType")
+    .value =
+    product.type;
+
+
+  document.getElementById("pCompany")
+    .value =
+    product.company || "";
+
+
+  document.getElementById("pPack")
+    .value =
+    product.pack || "";
+
+
+  document.getElementById("pStock")
+    .value =
+    product.stock || "";
+
+
+  document.getElementById("pCode")
+    .value =
+    product.code || "";
+
+
+  document.getElementById("pDescription")
+    .value =
+    product.description || "";
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteProduct(id){
+
+  if(
+    !confirm(
+      "এই Product delete করবেন?"
+    )
+  ){
+    return;
+  }
+
+
+  products =
+    products.filter(
+      p => p.id !== id
+    );
+
+
+  saveData();
+
+  showProducts();
+
+  renderAdmin();
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearForm(){
+
+  editingId = null;
+
+  document.getElementById("pName")
+    .value = "";
+
+  document.getElementById("pImage")
+    .value = "";
+
+  document.getElementById("pPrice")
+    .value = "";
+
+  document.getElementById("pType")
+    .value = "Medicine";
+
+  document.getElementById("pCompany")
+    .value = "";
+
+  document.getElementById("pPack")
+    .value = "";
+
+  document.getElementById("pStock")
+    .value = "";
+
+  document.getElementById("pCode")
+    .value = "";
+
+  document.getElementById("pDescription")
+    .value = "";
+
+}
+
+
+/* =========================
+   OUTSIDE MODAL CLOSE
+========================= */
+
+window.onclick =
+  function(event){
+
+    const details =
+      document.getElementById("detailsModal");
+
+    const admin =
+      document.getElementById("adminModal");
+
+
+    if(event.target === details){
+
+      closeDetails();
+
+    }
+
+
+    if(event.target === admin){
+
+      closeAdmin();
+
+    }
+
+  };
+
+
+/* =========================
+   START
+========================= */
+
+showProducts();
+
+</script>
+
+</body>
+      </html>
